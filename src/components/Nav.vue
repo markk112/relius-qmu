@@ -6,15 +6,15 @@
                 <router-link to="/">Welcome</router-link>
             </li>
             <li>
-                <router-link to="/about">Device</router-link>
+                <router-link to="/device">Device</router-link>
             </li>
             <li class="heading">Sideload</li>
             <li>
-                <router-link to="/here">Install</router-link>
+                <router-link to="/install">Install</router-link>
             </li>
             <li class="heading">Settings</li>
             <li>
-                <router-link to="/bring">Setup</router-link>
+                <router-link to="/setup">Setup</router-link>
             </li>
         </ul>
     </div>
@@ -28,7 +28,6 @@ export default {
 
 <style>
 #nav {
-  background-color: #000000;
   color: #fff;
   width: 340px;
   font-size: 14px;
@@ -36,13 +35,15 @@ export default {
 
 #nav ul li.heading {
   font-weight: 600;
+  padding-top: 3px;
+  padding-bottom: 3px;
   padding-left: 20px;
 }
 
 #nav ul li a {
   display: block;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 35px;
   font-size: inherit;
 }

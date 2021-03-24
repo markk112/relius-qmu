@@ -19,4 +19,10 @@ dd {
   font-family: Poppins-Regular;
 }
 
+/* Do not allow user to select text on app */
+html,
+body {
+  user-select: none;
+}
+
 
