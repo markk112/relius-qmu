@@ -3,18 +3,18 @@
         <ul>
             <li class="heading">Home</li>
             <li>
-                <router-link to="/">Welcome</router-link>
+                <a :class="{ 'is-active': (currentView === 'welcome') }" @click="handleView($event)">Welcome</a>
             </li>
             <li>
-                <router-link to="/device">Device</router-link>
+                <a :class="{ 'is-active': (currentView === 'device') }" @click="handleView($event)">Device</a>
             </li>
             <li class="heading">Sideload</li>
             <li>
-                <router-link to="/install">Install</router-link>
+                <a :class="{ 'is-active': (currentView === 'install') }" @click="handleView($event)">Install</a>
             </li>
             <li class="heading">Settings</li>
             <li>
-                <router-link to="/setup">Setup</router-link>
+                <a :class="{ 'is-active': (currentView === 'setup') }" @click="handleView($event)">Setup</a>
             </li>
         </ul>
     </div>
@@ -23,6 +23,16 @@
 <script>
 export default {
     name: 'Nav',
+    props: {
+      currentView: String,
+    },
+    methods: {
+      handleView (e) {
+        if (!e.srcElement.classList.contains('is-active')) {
+          this.$emit('changeCurrentView', e.srcElement.innerHTML.toLowerCase());
+        }
+      }
+    }
 }
 </script>
 
@@ -46,9 +56,10 @@ export default {
   padding-bottom: 5px;
   padding-left: 35px;
   font-size: inherit;
+  cursor: pointer;
 }
 
-#nav ul li a.router-link-active {
+#nav ul li a.is-active {
   background-color: #007cfd;
 }
 
