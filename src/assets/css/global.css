@@ -25,4 +25,11 @@ body {
   user-select: none;
 }
 
+/* Default view styling */
+.view {
+  background-color: #1c1d1f;
+  width: 100%;
+  height: 100%;
+}
+
 
