@@ -1,9 +1,9 @@
 <template>
     <div id="native-bar">
         <div>
-            <button class="minimise">_</button>
-            <button class="maximise">D</button>
-            <button class="exit">X</button>
+            <button class="minimise"></button>
+            <button class="maximise"></button>
+            <button class="exit"></button>
         </div>
     </div>
 </template>
@@ -31,5 +31,36 @@ export default {
     width: 46px;
     height: 30px;
     cursor: pointer;
+}
+#native-bar .minimise {
+    background-image: url('../assets/images/components/native-bar/minimize-icon.png');
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center;
+}
+#native-bar .minimise:active {
+    background-color: #cccccc;
+}
+#native-bar .maximise {
+    background-image: url('../assets/images/components/native-bar/maximize-icon.png');
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center;
+}
+#native-bar .maximise:active {
+    background-color: #cccccc;
+}
+#native-bar .exit {
+    background-image: url('../assets/images/components/native-bar/exit-icon.png');
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center;
+}
+#native-bar .exit:hover {
+    background-color: #e81123;
+    background-image: url('../assets/images/components/native-bar/exit-icon-white.png');
+}
+#native-bar .exit:active {
+    background-color: #f1707a;
 }
 </style>
