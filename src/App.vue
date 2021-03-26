@@ -3,12 +3,9 @@
   <div id="content">
     <div id="sidebar">
       <DeviceConnStatus />
-      <Nav :currentView="currentView" @changeCurrentView="changeCurrentView" />
+      <Nav :currentView="currentRoute.view" @changeCurrentView="changeCurrentView" />
     </div>
-    <Welcome v-show="currentView === 'welcome'" />
-    <Device v-show="currentView === 'device'" />
-    <Install v-show="currentView === 'install'" />
-    <Setup v-show="currentView === 'setup'" />
+    <component :is="currentRoute.component" />
   </div>
 </template>
 
@@ -38,12 +35,33 @@ export default {
   },
   data () {
     return {
-      currentView: 'welcome',
+      routes: [
+        {
+          view: 'welcome',
+          component: Welcome
+        },
+        {
+          view: 'device',
+          component: Device
+        },
+        {
+          view: 'install',
+          component: Install
+        },
+        {
+          view: 'setup',
+          component: Setup
+        },
+      ],
+      currentRoute: {
+        view: 'welcome',
+        component: Welcome
+      },
     }
   },
   methods: {
-    changeCurrentView (toView) {
-      this.currentView = toView;
+    changeCurrentView (toRoute) {
+      this.currentRoute = this.routes.find(route => route.view === toRoute)
     }
   }
 };
