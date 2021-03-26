@@ -18,11 +18,11 @@ export default {
         minimise() {
             window.api.send('minimise-window');
         },
-        maximise () {
-            // max window
+        maximise() {
+            window.api.send('maximise-window');
         },
-        exit () {
-            // exit
+        exit() {
+            window.api.send('exit-app');
         }
     }
 }

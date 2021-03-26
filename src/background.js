@@ -77,6 +77,20 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on('minimise-window', (event, arg) => {
+ipcMain.on('minimise-window', () => {
   BrowserWindow.getFocusedWindow().minimize();
 });
+
+ipcMain.on('maximise-window', () => {
+  if (BrowserWindow.getFocusedWindow().isMaximized()) {
+    BrowserWindow.getFocusedWindow().unmaximize();
+  }
+  else {
+    BrowserWindow.getFocusedWindow().maximize();
+  }
+});
+
+ipcMain.on('exit-app', () => {
+  // Forces closing of the focused window. unload and beforeunload events will not be emitted.
+  BrowserWindow.getFocusedWindow().destroy();
+}); 
