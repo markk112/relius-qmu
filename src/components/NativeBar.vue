@@ -1,9 +1,12 @@
 <template>
     <div id="native-bar">
+        <div class="draggable">
+
+        </div>
         <div>
-            <button class="minimise"></button>
-            <button class="maximise"></button>
-            <button class="exit"></button>
+            <button class="minimise" @click="minimise"></button>
+            <button class="maximise" @click="maximise"></button>
+            <button class="exit" @click="exit"></button>
         </div>
     </div>
 </template>
@@ -11,6 +14,17 @@
 <script>
 export default {
     name: 'NativeBar',
+    methods: {
+        minimise() {
+            window.api.send('minimise-window');
+        },
+        maximise () {
+            // max window
+        },
+        exit () {
+            // exit
+        }
+    }
 }
 </script>
 
@@ -21,6 +35,9 @@ export default {
     background-color: #f5f5f5;
     width: 100%;
     height: 30px;
+}
+#native-bar .draggable {
+    flex-grow: 1;
     -webkit-app-region: drag;
 }
 #native-bar button {
