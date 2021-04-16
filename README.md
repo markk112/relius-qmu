@@ -1,4 +1,4 @@
-<center><img style="margin: 80px 0;" src="https://i.imgur.com/FRmeMb2.png" width="200"/></center>
+<p align=centre><img style="margin: 200px 0;" src="https://i.imgur.com/FRmeMb2.png" width="200"/></p>
 
 # Relius QMU v0.1.0-alpha1
 ### A Quest Management Utility application used for managing the Oculus Quest
