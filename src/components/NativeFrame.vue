@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    name: 'NativeBar',
+    name: 'NativeFrame',
     methods: {
         minimise() {
             window.api.send('minimise-window');

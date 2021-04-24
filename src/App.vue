@@ -1,8 +1,7 @@
 <template>
-  <NativeBar />
+  <NativeFrame />
   <div id="content">
     <div id="sidebar">
-      <DeviceConnStatus />
       <Nav :currentView="currentRoute.view" @changeCurrentView="changeCurrentView" />
     </div>
     <component :is="currentRoute.component" />
@@ -10,52 +9,42 @@
 </template>
 
 <script>
+import Nav from "@/components/Sidebar/Nav.vue";
+import NativeFrame from "@/components/NativeFrame.vue";
 
-// Components
-import Nav from "@/components/Nav.vue";
-import DeviceConnStatus from "@/components/DeviceConnStatus.vue";
-import NativeBar from "@/components/NativeBar.vue";
+import Dashboard from "@/views/Dashboard.vue";
+import Sideload from "@/views/Sideload.vue";
+import Settings from "@/views/Settings.vue";
 
-// Views
-import Welcome from '@/views/Welcome.vue';
-import Device from '@/views/Device.vue';
-import Install from '@/views/Install.vue';
-import Setup from '@/views/Setup.vue';
 
 export default {
   name: "App",
   components: {
-    Welcome,
-    Device,
-    Install,
-    Setup,
+    Dashboard,
+    Sideload,
+    Settings,
     Nav,
-    DeviceConnStatus,
-    NativeBar,
+    NativeFrame,
   },
   data () {
     return {
       routes: [
         {
-          view: 'welcome',
-          component: Welcome
+          view: 'dashboard',
+          component: Dashboard
         },
         {
-          view: 'device',
-          component: Device
+          view: 'sideload',
+          component: Sideload
         },
         {
-          view: 'install',
-          component: Install
-        },
-        {
-          view: 'setup',
-          component: Setup
+          view: 'settings',
+          component: Settings
         },
       ],
       currentRoute: {
-        view: 'welcome',
-        component: Welcome
+        view: 'dashboard',
+        component: Dashboard
       },
     }
   },
@@ -81,6 +70,6 @@ export default {
 }
 #sidebar {
   height: 100%;
-  background-color: #000;
+  background-color: #000000;
 }
 </style>

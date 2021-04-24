@@ -1,20 +1,14 @@
 <template>
     <div id="nav">
         <ul>
-            <li class="heading">Home</li>
             <li>
-                <a :class="{ 'is-active': (currentView === 'welcome') }" @click="handleView($event)">Welcome</a>
+                <a :class="{ 'is-active': (currentView === 'dashboard') }" @click="handleView($event)">Dashboard</a>
             </li>
             <li>
-                <a :class="{ 'is-active': (currentView === 'device') }" @click="handleView($event)">Device</a>
+                <a :class="{ 'is-active': (currentView === 'sideload') }" @click="handleView($event)">Sideload</a>
             </li>
-            <li class="heading">Sideload</li>
             <li>
-                <a :class="{ 'is-active': (currentView === 'install') }" @click="handleView($event)">Install</a>
-            </li>
-            <li class="heading">Settings</li>
-            <li>
-                <a :class="{ 'is-active': (currentView === 'setup') }" @click="handleView($event)">Setup</a>
+                <a :class="{ 'is-active': (currentView === 'settings') }" @click="handleView($event)">Settings</a>
             </li>
         </ul>
     </div>
@@ -36,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #nav {
   color: #fff;
   width: 340px;

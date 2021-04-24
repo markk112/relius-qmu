@@ -3,11 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// CSS reset
-// https://piccalil.li/blog/a-modern-css-reset
+// Reset CSS to remove default styling
 import '@/assets/css/reset.css'
 
-// Global styles
+// Global styling
 import '@/assets/css/global.css'
 
 createApp(App).use(store).use(router).mount('#app')
