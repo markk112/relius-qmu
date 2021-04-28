@@ -4,6 +4,10 @@
     font-family: Poppins-Regular;
     src: url('../fonts/Poppins-Regular.ttf');
 }
+@font-face {
+  font-family: Segoe-UI-Regular;
+  src: url('../fonts/Segoe-UI-Regular.ttf');
+}
 
 /* Set global font family for all text elements */
 body,
@@ -17,6 +21,14 @@ blockquote,
 dl,
 dd {
   font-family: Poppins-Regular;
+}
+
+/* Remove default button styling */
+button {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  outline: 0;
 }
 
 /* Do not allow user to select text on app */
