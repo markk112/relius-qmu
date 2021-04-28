@@ -1,5 +1,5 @@
 <template>
-  <NativeFrame />
+  <Frame />
   <div id="content">
     <div id="sidebar">
       <Nav :currentView="currentRoute.view" @changeCurrentView="changeCurrentView" />
@@ -10,7 +10,7 @@
 
 <script>
 import Nav from "@/components/Sidebar/Nav.vue";
-import NativeFrame from "@/components/NativeFrame.vue";
+import Frame from "@/components/Frame.vue";
 
 import Dashboard from "@/views/Dashboard.vue";
 import Sideload from "@/views/Sideload.vue";
@@ -24,7 +24,7 @@ export default {
     Sideload,
     Settings,
     Nav,
-    NativeFrame,
+    Frame,
   },
   data () {
     return {
