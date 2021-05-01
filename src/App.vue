@@ -2,6 +2,8 @@
   <Frame />
   <div id="content">
     <div id="sidebar">
+      <ConnectionIndicator />
+      <BatteryIndicator />
       <Nav :currentView="currentRoute.view" @changeCurrentView="changeCurrentView" />
     </div>
     <component :is="currentRoute.component" />
@@ -9,8 +11,11 @@
 </template>
 
 <script>
-import Nav from "@/components/Sidebar/Nav.vue";
 import Frame from "@/components/Frame.vue";
+
+import ConnectionIndicator from "@/components/Sidebar/ConnectionIndicator.vue";
+import BatteryIndicator from "@/components/Sidebar/BatteryIndicator.vue";
+import Nav from "@/components/Sidebar/Nav.vue";
 
 import Dashboard from "@/views/Dashboard.vue";
 import Sideload from "@/views/Sideload.vue";
@@ -24,6 +29,8 @@ export default {
     Sideload,
     Settings,
     Nav,
+    ConnectionIndicator,
+    BatteryIndicator,
     Frame,
   },
   data () {
