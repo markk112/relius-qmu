@@ -1,15 +1,28 @@
 
-/* Import global font family */
+
+
+
+/* Global Styles
+---------------------------------------------------------------------------------------------------- */
+
+
+
+
 @font-face {
-    font-family: Poppins-Regular;
-    src: url('../fonts/Poppins-Regular.ttf');
+  font-family: Poppins-Regular;
+  src: url('../fonts/Poppins-Regular.ttf');
 }
 @font-face {
-  font-family: Segoe-UI-Regular;
-  src: url('../fonts/Segoe-UI-Regular.ttf');
+font-family: Segoe-UI-Regular;
+src: url('../fonts/Segoe-UI-Regular.ttf');
 }
 
-/* Set global font family for all text elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body,
 h1,
 h2,
@@ -20,10 +33,55 @@ figure,
 blockquote,
 dl,
 dd {
+  margin: 0;
   font-family: Poppins-Regular;
 }
 
-/* Remove default button styling */
+ul,
+ol,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+html,
+body {
+  user-select: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 button {
   background-color: inherit;
   border: 0;
@@ -31,13 +89,30 @@ button {
   outline: 0;
 }
 
-/* Do not allow user to select text on app */
-html,
-body {
-  user-select: none;
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Default view styling */
+
+
+
+/* Class Based Styles
+---------------------------------------------------------------------------------------------------- */
+
+
+
+
 .view {
   background-color: #000000;
   width: 100%;
