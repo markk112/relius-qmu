@@ -60,7 +60,7 @@ export default {
     justify-content: flex-end;
     background-color: #000000;
     width: 100%;
-    height: 35px;
+    height: 45px;
     border-bottom: 1px solid #1c1c1c;
 }
 #frame .draggable {
@@ -70,13 +70,13 @@ export default {
 }
 #frame .logo {
     display: flex;
-    margin-left: 10px;
+    margin-left: 18px;
     align-items: center;
     height: 100%;
 }
 #frame .logo p {
     color: #949494;
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 10px;
 }
 #frame .buttons {

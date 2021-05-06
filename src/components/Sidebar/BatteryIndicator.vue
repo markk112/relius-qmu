@@ -56,6 +56,7 @@ export default {
 <style scoped>
 #battery-indicator {
     padding: 30px 0;
+    border-bottom: 1px solid #1c1c1c;
 }
 progress {
     width: 40px;
