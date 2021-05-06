@@ -79,11 +79,11 @@ progress {
     margin-top: 20px;
     width: 75%;
     height: 5px;
-    background-color: #000000;
+    background-color: #1c1c1c;
 }
 .bar {
     height: inherit;
-    width: 100%;
+    width: 60%;
     background-color: #21bf73;
 }
 
