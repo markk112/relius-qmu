@@ -1,6 +1,6 @@
 <template>
     <div id="settings" class="view">
-        Settings
+        <h1 style="font-size: 42px; color: #fff;">Settings View</h1>
     </div>
 </template>
 

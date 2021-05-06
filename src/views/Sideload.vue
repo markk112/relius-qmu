@@ -1,6 +1,6 @@
 <template>
     <div id="sideload" class="view">
-        Sideload
+        <h1 style="font-size: 42px; color: #fff;">Sideload View</h1>
     </div>
 </template>
 
