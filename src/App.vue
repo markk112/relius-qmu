@@ -77,6 +77,8 @@ export default {
 }
 #sidebar {
   height: 100%;
+  width: 340px;
   background-color: #000000;
+  border-right: 1px solid #1c1c1c;
 }
 </style>
