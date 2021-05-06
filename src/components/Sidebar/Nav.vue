@@ -29,6 +29,7 @@ export default {
 
 <style scoped>
 #nav {
+    margin-top: 35px;
     color: #858585;
     font-size: 16px;
     font-family: 'Segoe-UI-Regular';
