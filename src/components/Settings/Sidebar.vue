@@ -1,16 +1,27 @@
 <template>
     <div class="sidebar">
         <ul>
-            <li><a href="#" class="active">Dependencies</a></li>
-            <li><a href="#">Prefrences</a></li>
-            <li><a href="#">About</a></li>
+            <li><a data-view="0" :class="{ active: currentView === 0 }" @click="handleView($event)">Dependencies</a></li>
+            <li><a data-view="1" :class="{ active: currentView === 1 }" @click="handleView($event)">Prefrences</a></li>
+            <li><a data-view="2" :class="{ active: currentView === 2 }" @click="handleView($event)">About</a></li>
         </ul>
+        <h1>{{ currentView }}</h1>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Sidebar',
+    props: {
+        currentView: Number,
+    },
+    methods: {
+        handleView(e) {
+            if (!e.srcElement.classList.contains('active')) {
+                this.$emit('changeToView', e.srcElement.dataset.view);
+            }
+        }
+    }
 };
 </script>
 

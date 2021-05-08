@@ -4,7 +4,7 @@
             <h1>Settings</h1>
         </div>
         <div class="content">
-            <Sidebar />
+            <Sidebar :currentView='currentView' @changeToView='currentView = $event' />
             <div class="subcontent">
                 <div class="dependencies">
                     <div class="title">
@@ -39,6 +39,11 @@ export default {
     name: 'Settings',
     components: {
         Sidebar,
+    },
+    data() {
+        return {
+            currentView: 0,
+        }
     }
 };
 </script>
