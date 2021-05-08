@@ -3,7 +3,7 @@
         <div class="view-banner">
             <h1>Dashboard</h1>
         </div>
-        <div class="content">
+        <div class="content padding">
             <div class="banner">
                 <svg xmlns="http://www.w3.org/2000/svg" width="108" height="58.178" viewBox="0 0 108 58.178">
                     <path
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="details">
+            <div class="details inner">
                 <h2>General</h2>
                 <div class="info">
                     <ul>
@@ -81,9 +81,6 @@ export default {
 </script>
 
 <style scoped>
-#dashboard .content {
-    padding: 60px 80px;
-}
 #dashboard .content .banner {
     display: flex;
     padding-bottom: 40px;
@@ -125,11 +122,6 @@ export default {
     align-items: flex-end;
 }
 
-#dashboard .content .details {
-    padding: 35px 50px;
-    border: 1px solid #1c1c1c;
-    border-radius: 10px;
-}
 #dashboard .content .details h2 {
     font-size: 18px;
     margin-bottom: 20px;
