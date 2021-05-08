@@ -6,7 +6,7 @@
         <div class="content">
             <div class="sidebar">
                 <ul>
-                    <li><a href="#">Dependencies</a></li>
+                    <li><a href="#" class="active">Dependencies</a></li>
                     <li><a href="#">Prefrences</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
@@ -42,8 +42,23 @@ export default {
     flex: 1;
 }
 #settings .sidebar {
+    display: flex;
+    flex-flow: column;
     width: 220px;
     border-right: 1px solid #1c1c1c;
+    padding: 20px;
+}
+#settings .sidebar li {
+    width: 100%;
+    margin-bottom: 5px;
+}
+#settings .sidebar li a {
+    display: block;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+#settings .sidebar .active {
+    background-color: #0e0e0e;
 }
 #settings .subcontent {
     flex: 1;
