@@ -43,11 +43,8 @@ html:focus-within {
 }
 
 body {
-    min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
-    border: 1px solid #1c1c1c;
-    overflow: hidden;
 }
 
 html,
@@ -108,12 +105,16 @@ button {
     height: 100%;
 }
 
+.strong {
+    font-weight: 600;
+}
+
 .btn-default {
   display: block;
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 5px 20px;
     color: #949494;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .btn-default:hover {

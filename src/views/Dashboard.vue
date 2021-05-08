@@ -34,20 +34,16 @@
                             <p>Steve's Oculus Quest 2</p>
                         </li>
                         <li>
-                            <h3>Device Name</h3>
-                            <p>Steve's Oculus Quest 2</p>
+                            <h3>Model</h3>
+                            <p>Oculus Quest 2 "hollywood"</p>
                         </li>
                         <li>
-                            <h3>Device Name</h3>
-                            <p>Steve's Oculus Quest 2</p>
+                            <h3>Firmware Version</h3>
+                            <p>v26.223</p>
                         </li>
                         <li>
-                            <h3>Device Name</h3>
-                            <p>Steve's Oculus Quest 2</p>
-                        </li>
-                        <li>
-                            <h3>Device Name</h3>
-                            <p>Steve's Oculus Quest 2</p>
+                            <h3>Serial</h3>
+                            <p>FSDFDFD33434FDSD2222</p>
                         </li>
                     </ul>
                 </div>
@@ -56,6 +52,22 @@
                 <div class="indicator-bg">
                     <div class="indicator-fill"></div>
                     <div class="indicator-fill-1"></div>
+                </div>
+                <div class="legend">
+                    <div class="item">
+                        <div class="colour"></div>
+                        <div class="name">
+                            <h3>Unknown Sources</h3>
+                            <p>34.5 <span class="strong">GB</span></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="colour"></div>
+                        <div class="name">
+                            <h3>System</h3>
+                            <p>34.5 <span class="strong">GB</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,7 +120,15 @@ export default {
     font-size: 16px;
 }
 #dashboard .content .banner .mini-info p {
+    padding: 4px 6px;
+    line-height: 1.2;
     font-size: 14px;
+    margin-left: -5px;
+}
+#dashboard .content .banner .mini-info p:hover {
+    cursor: pointer;
+    background-color: #0e0e0e;
+    color: #fff;
 }
 #dashboard .content .banner .controls {
     display: flex;
@@ -166,5 +186,23 @@ export default {
     background-color: #0d449c;
     height: inherit;
     width: 14%;
+}
+#dashboard .legend {
+    margin-top: 15px;
+}
+#dashboard .legend .item {
+    display: inline-block;
+    margin-right: 25px;
+}
+#dashboard .legend .item .name {
+    display: inline-block;
+}
+#dashboard .legend .item .colour {
+    background-color: #0e64ef;
+    border-radius: 5px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
 }
 </style>

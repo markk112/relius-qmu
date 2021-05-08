@@ -65,6 +65,7 @@ export default {
 
 <style>
 #app {
+  border: 1px solid #1c1c1c;
   display: flex;
   flex-direction: column;
   height: 100vh;
