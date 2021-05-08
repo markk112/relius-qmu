@@ -5,7 +5,6 @@
             <li><a data-view="1" :class="{ active: currentView === 1 }" @click="handleView($event)">Prefrences</a></li>
             <li><a data-view="2" :class="{ active: currentView === 2 }" @click="handleView($event)">About</a></li>
         </ul>
-        <h1>{{ currentView }}</h1>
     </div>
 </template>
 
@@ -18,7 +17,7 @@ export default {
     methods: {
         handleView(e) {
             if (!e.srcElement.classList.contains('active')) {
-                this.$emit('changeToView', e.srcElement.dataset.view);
+                this.$emit('changeToView', parseInt(e.srcElement.dataset.view));
             }
         }
     }
@@ -38,6 +37,7 @@ export default {
     margin-bottom: 5px;
 }
 .sidebar li a {
+    cursor: pointer;
     display: block;
     padding: 8px 15px;
     border-radius: 5px;
