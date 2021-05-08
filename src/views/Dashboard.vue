@@ -81,21 +81,6 @@ export default {
 </script>
 
 <style scoped>
-#dashboard {
-    color: #949494;
-}
-#dashboard .view-banner {
-    height: 70px;
-    border-bottom: 1px solid #1c1c1c;
-    display: flex;
-    align-items: center;
-}
-#dashboard .view-banner h1 {
-    font-size: 18px;
-    margin-left: 30px;
-}
-
-
 #dashboard .content {
     padding: 60px 80px;
 }
