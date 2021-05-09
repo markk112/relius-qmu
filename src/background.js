@@ -2,6 +2,7 @@
 
 const path = require('path');
 const usbDetect = require('usb-detection');
+import { AdbBridge } from './modules/AdbBridge'
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
@@ -108,6 +109,7 @@ ipcMain.on('exit-app', () => {
 
 usbDetect.on('add', (device) => {
   win.webContents.send('usbAttached', device);
+  AdbBridge.functionTest();
 });
 
 usbDetect.on('remove', (device) => {
