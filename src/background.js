@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path');
-const usb = require('usb');
 const usbDetect = require('usb-detection');
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -106,11 +105,6 @@ ipcMain.on('exit-app', () => {
 
 /* USB IPC Control
 ---------------------------------------------------------------------------------------------------- */
-
-usb.on('attach', device => {
-  device.open();
-  win.webContents.send('usbAttached', { device: device, interfaces: device.interfaces });
-});
 
 // usbDetect.on('add', (device) => {
 //   win.webContents.send('usbAttached', device);
