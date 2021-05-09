@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path');
+const usbDetect = require('usb-detection');
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
@@ -61,6 +62,7 @@ app.on('activate', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
   createWindow()
+  usbDetect.startMonitoring();
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -78,7 +80,8 @@ if (isDevelopment) {
   }
 }
 
-// ipc events
+/* Frame IPC Control
+---------------------------------------------------------------------------------------------------- */
 
 ipcMain.on('minimise-window', () => {
   BrowserWindow.getFocusedWindow().minimize();
@@ -98,4 +101,9 @@ ipcMain.on('exit-app', () => {
   BrowserWindow.getFocusedWindow().destroy();
 }); 
 
+/* USB IPC Control
+---------------------------------------------------------------------------------------------------- */
 
+usbDetect.on('add', (device) => {
+  console.log(device);
+});
