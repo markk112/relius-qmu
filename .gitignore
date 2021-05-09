@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+# platform tools, will be downloaded in app
+deps/*
 
 # local env files
 .env.local
