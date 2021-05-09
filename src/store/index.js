@@ -10,10 +10,10 @@ export default createStore({
     }
   },
   actions: {
-    usbAttached ({commit}, device) {
-      console.log('true');
-      if (this.state.status === 0) {
-        commit('setStatus', 1);
+    usbAttached (context, device) {
+      console.log('from state', device);
+      if (context.state.status === 0) {
+        context.commit('setStatus', 1);
       }
     }
   },

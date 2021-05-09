@@ -35,6 +35,7 @@ export default {
     mounted() {
         window.api.receive('usbAttached', (data) => {
             console.log('USB SUCCESS', data);
+            this.$store.dispatch('usbAttached', data);
         });
     },
     data() {
