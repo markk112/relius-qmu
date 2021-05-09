@@ -11,9 +11,13 @@ export default createStore({
   },
   actions: {
     usbAttached (context, device) {
-      console.log('from state', device);
       if (context.state.status === 0) {
         context.commit('setStatus', 1);
+      }
+    },
+    usbRemoved (context, device) {
+      if (context.state.status === 1) {
+        context.commit('setStatus', 0);
       }
     }
   },

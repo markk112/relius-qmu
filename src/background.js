@@ -108,6 +108,9 @@ ipcMain.on('exit-app', () => {
 ---------------------------------------------------------------------------------------------------- */
 
 usbDetect.on('add', (device) => {
-  console.log(device);
   win.webContents.send('usbAttached', device);
+});
+
+usbDetect.on('remove', (device) => {
+  win.webContents.send('usbRemoved', device);
 });

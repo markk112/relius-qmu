@@ -34,8 +34,12 @@ export default {
     },
     mounted() {
         window.api.receive('usbAttached', (data) => {
-            console.log('USB SUCCESS', data);
+            console.log('Attach Received!');
             this.$store.dispatch('usbAttached', data);
+        });
+        window.api.receive('usbRemoved', (data) => {
+            console.log('Remove Received!');
+            this.$store.dispatch('usbRemoved', data);
         });
     },
     data() {
