@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path');
+import store from './store';
 const usbDetect = require('usb-detection');
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -12,9 +13,11 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+let win;
+
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     frame: false,
     minWidth: 1200,
     minHeight: 830,
@@ -84,21 +87,21 @@ if (isDevelopment) {
 ---------------------------------------------------------------------------------------------------- */
 
 ipcMain.on('minimise-window', () => {
-  BrowserWindow.getFocusedWindow().minimize();
+  win.minimize();
 });
 
 ipcMain.on('maximise-window', () => {
   if (BrowserWindow.getFocusedWindow().isMaximized()) {
-    BrowserWindow.getFocusedWindow().unmaximize();
+    win.unmaximize();
   }
   else {
-    BrowserWindow.getFocusedWindow().maximize();
+    win.maximize();
   }
 });
 
 ipcMain.on('exit-app', () => {
   // Forces closing of the focused window. unload and beforeunload events will not be emitted.
-  BrowserWindow.getFocusedWindow().destroy();
+  win.destroy();
 }); 
 
 /* USB IPC Control
@@ -106,4 +109,5 @@ ipcMain.on('exit-app', () => {
 
 usbDetect.on('add', (device) => {
   console.log(device);
+  win.webContents.send('usbAttached', device);
 });
