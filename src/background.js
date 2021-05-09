@@ -27,7 +27,7 @@ async function createWindow() {
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
-      
+
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
@@ -51,6 +51,7 @@ app.on('window-all-closed', () => {
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit()
+    usbDetect.stopMonitoring();
   }
 })
 
@@ -108,11 +109,16 @@ ipcMain.on('exit-app', () => {
 ---------------------------------------------------------------------------------------------------- */
 
 usbDetect.on('add', async (device) => {
-  AdbBridge.deviceFound();
-  console.log(device);
-  win.webContents.send('usbAttached', device);
+  await AdbBridge.sleep(1000);
+  const deviceIsQuest = await AdbBridge.isAQuest();
+  if (deviceIsQuest) {
+    win.webContents.send('usbAttached', device);
+  }
 });
 
-usbDetect.on('remove', (device) => {
-  win.webContents.send('usbRemoved', device);
+usbDetect.on('remove', async (device) => {
+  const deviceIsQuest = await AdbBridge.isAQuest();
+  if (!deviceIsQuest) {
+    win.webContents.send('usbRemoved', device);
+  }
 });

@@ -4,16 +4,29 @@ const { spawn } = require('child_process');
 const promExec = util.promisify(require('child_process').exec);
 
 export const AdbBridge = {
+
     async execute(strcmd) {
         const { stdout, stderr } = await promExec(strcmd, {
-            cwd: process.cwd() + '/deps/platform-tools',
+            cwd: process.cwd() + '\\deps\\platform-tools',
         });
         return stdout;
     },
-    async deviceFound() {
-        const cmd = await this.executeSpawn('adb devices -l');
-        console.log(cmd);
+
+    async isAQuest() {
+        const devicesStr = await this._getAdbDevices()
+        if (devicesStr.includes('Quest') && devicesStr.includes('hollywood')) {
+            return true;
+        } else {
+            return false;
+        }
     },
+
+    async _getAdbDevices() {
+        await this.sleep(1000);
+        const cmd = await this.execute('adb devices -l');
+        return cmd;
+    },
+
     async executeSpawn(strcmd) {
         return new Promise((resolve, reject) => {
             const cmd = spawn(strcmd, [], {
@@ -32,5 +45,11 @@ export const AdbBridge = {
             });
         });
     },
+
+    async sleep(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+        });
+    }
 
 }
