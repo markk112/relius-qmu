@@ -102,7 +102,7 @@ ipcMain.on('maximise-window', () => {
 ipcMain.on('exit-app', () => {
   // Forces closing of the focused window. unload and beforeunload events will not be emitted.
   win.destroy();
-}); 
+});
 
 /* USB IPC Control
 ---------------------------------------------------------------------------------------------------- */
