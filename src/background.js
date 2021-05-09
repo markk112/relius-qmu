@@ -107,9 +107,11 @@ ipcMain.on('exit-app', () => {
 /* USB IPC Control
 ---------------------------------------------------------------------------------------------------- */
 
-usbDetect.on('add', (device) => {
+usbDetect.on('add', async (device) => {
+  AdbBridge.execute('ipconfig', data => {
+    console.log(data);
+  });
   win.webContents.send('usbAttached', device);
-  AdbBridge.functionTest();
 });
 
 usbDetect.on('remove', (device) => {
