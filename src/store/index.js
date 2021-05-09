@@ -12,6 +12,7 @@ export default createStore({
   actions: {
     usbAttached (context, device) {
       if (context.state.status === 0) {
+        console.log(device);
         context.commit('setStatus', 1);
       }
     },
