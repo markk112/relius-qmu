@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="details inner">
-                <h2>General</h2>
+                <h2>General {{ getStatus }}</h2>
                 <div class="info">
                     <ul>
                         <li>
@@ -77,6 +77,11 @@
 <script>
 export default {
     name: 'Dashboard',
+    computed: {
+        getStatus() {
+            return this.$store.state.status;
+        }
+    }
 };
 </script>
 

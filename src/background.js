@@ -78,6 +78,8 @@ if (isDevelopment) {
   }
 }
 
+// ipc events
+
 ipcMain.on('minimise-window', () => {
   BrowserWindow.getFocusedWindow().minimize();
 });
@@ -95,3 +97,5 @@ ipcMain.on('exit-app', () => {
   // Forces closing of the focused window. unload and beforeunload events will not be emitted.
   BrowserWindow.getFocusedWindow().destroy();
 }); 
+
+
