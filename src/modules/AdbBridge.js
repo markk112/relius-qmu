@@ -1,7 +1,6 @@
 
-const { spawn, exec } = require('child_process');
 const util = require('util');
-const promExec = util.promisify(exec);
+const promExec = util.promisify(require('child_process').exec);
 
 export const AdbBridge = {
     async execute(strcmd) {
