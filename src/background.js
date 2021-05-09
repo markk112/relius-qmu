@@ -108,8 +108,8 @@ ipcMain.on('exit-app', () => {
 ---------------------------------------------------------------------------------------------------- */
 
 usbDetect.on('add', async (device) => {
-  const done = await AdbBridge.execute("ls", ["-la"]);
-  console.log('From Result:', done);
+  const command = await AdbBridge.execute('dir');
+  console.log(command);
   win.webContents.send('usbAttached', device);
 });
 
