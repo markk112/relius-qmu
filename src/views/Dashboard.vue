@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="details inner">
-                <h2>General {{ getStatus }}</h2>
+                <h2>General</h2>
+                <h4 style="color: red; font-size: 49px;">{{ getStatus }}</h4>
                 <div class="info">
                     <ul>
                         <li>
