@@ -1,4 +1,3 @@
-**Please note this project is unreleased and does not currently work.**
 <img style="margin: 100px 0;" src="https://i.imgur.com/FRmeMb2.png" width="200"/>
 
 # Relius QMU v0.1.0-alpha1
