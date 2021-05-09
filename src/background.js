@@ -106,10 +106,10 @@ ipcMain.on('exit-app', () => {
 /* USB IPC Control
 ---------------------------------------------------------------------------------------------------- */
 
-// usbDetect.on('add', (device) => {
-//   win.webContents.send('usbAttached', device);
-// });
+usbDetect.on('add', (device) => {
+  win.webContents.send('usbAttached', device);
+});
 
-// usbDetect.on('remove', (device) => {
-//   win.webContents.send('usbRemoved', device);
-// });
+usbDetect.on('remove', (device) => {
+  win.webContents.send('usbRemoved', device);
+});
