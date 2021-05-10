@@ -27,25 +27,6 @@ export const AdbBridge = {
         return cmd;
     },
 
-    async executeSpawn(strcmd) {
-        return new Promise((resolve, reject) => {
-            const cmd = spawn(strcmd, [], {
-                cwd: process.cwd() + '/deps/platform-tools',
-                shell: true,
-            });
-            let stdout = '';
-            cmd.stdout.on('data', data => {
-                stdout += data.toString();
-            });
-            cmd.stderr.on('data', data => {
-                stdout += data.toString();
-            });
-            cmd.stdout.on('close', code => {
-                resolve(stdout);
-            });
-        });
-    },
-
     async sleep(ms) {
         return new Promise((resolve) => {
             setTimeout(resolve, ms);

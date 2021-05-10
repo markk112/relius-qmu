@@ -129,29 +129,21 @@ usbDetect.on('remove', async (device) => {
 ipcMain.on('getDeviceProperties', async (e) => {
   const getProps = await AdbBridge.execute('adb shell getprop');
 
+  const strs = getProps.replace(/\s+/g, '');
+  const found = strs.match(/\[ro\.build\.branch\]:\[(.*?)\]/)[1];
+  const found2 = strs.match(/\[ro\.product\.model\]:\[(.*?)\]/)[1];
+  const out = { model: found2, branch: found };
   /*
   usage
   adb shell getprop ro.build.version.sdk
 
-  ro.product.device
-  "hollywood"
   ro.product.model
   "Quest 2"
-  ro.product.manufacturer
-  "Oculus"
-  ro.serialno
-  "1JJEH222DJS2222"
-  ro.build.id
-  "QP1A.2323232.020"
-  ro.build.fingerprint
-  "oculus/hollywood/hollywood:10/QP1A..."
-  ro.build.description
-  "hollywood-suer 10 QPA1.23232.020 12312331232132 release-keys"
-  
-
+  ro.build.branch
+  "hollywood-v23"
   */
 
-  e.reply('getDeviceProperties_REPLY', getProps);
+  e.reply('getDeviceProperties_REPLY', out);
 });
 
 /* General System IPC
