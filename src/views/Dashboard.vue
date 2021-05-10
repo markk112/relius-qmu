@@ -39,11 +39,11 @@
                         </li>
                         <li>
                             <h3>Firmware Version</h3>
-                            <p>v26.223</p>
+                            <p>v{{ questFirmwareVersion }}</p>
                         </li>
                         <li>
                             <h3>Serial</h3>
-                            <p>FSDFDFD33434FDSD2222</p>
+                            <p>{{ questSerial }}</p>
                         </li>
                     </ul>
                 </div>
@@ -98,6 +98,12 @@ export default {
         },
         questSerial() {
             return this.$store.state.questSerial;
+        },
+        questFirmwareVersion() {
+            return this.$store.state.questFirmwareVersion;
+        },
+        questModel() {
+            return this.$store.state.questModel;
         }
     }
 };

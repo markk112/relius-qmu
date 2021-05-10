@@ -5,6 +5,8 @@ export default createStore({
     status: 0,
     questSerial: 'XXXXXXXXXXXXXX',
     questCustomName: 'John\'s Quest',
+    questFirmwareVersion: '?',
+    questModel: 'unknown'
   },
   mutations: {
     setStatus (state, status) {
