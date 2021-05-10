@@ -15,8 +15,8 @@
                     />
                 </svg>
                 <div class="mini-info">
-                    <h2>Steve's Quest 2</h2>
-                    <p>FSDJ99934343JJJFD223</p>
+                    <h2>{{ questCustomName }}</h2>
+                    <p>{{ questSerial }}</p>
                 </div>
                 <div class="controls">
                     <div class="buttons">
@@ -31,7 +31,7 @@
                     <ul>
                         <li>
                             <h3>Device Name</h3>
-                            <p>Steve's Oculus Quest 2</p>
+                            <p>{{ questCustomName }}</p>
                         </li>
                         <li>
                             <h3>Model</h3>
@@ -77,6 +77,14 @@
 <script>
 export default {
     name: 'Dashboard',
+    computed: {
+        questCustomName() {
+            return this.$store.state.questCustomName;
+        },
+        questSerial() {
+            return this.$store.state.questSerial;
+        }
+    }
 };
 </script>
 

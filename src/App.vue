@@ -33,13 +33,12 @@ export default {
         Frame,
     },
     mounted() {
-        window.api.receive('questAttached', (data) => {
-            console.log('Attach Received!');
-            this.$store.dispatch('questAttached', data);
+        window.api.receive('questAttached', (usbDevice) => {
+            this.$store.dispatch('questAttached', usbDevice);
+            this.$store.dispatch('setQuestSerial', usbDevice.serialNumber);
         });
-        window.api.receive('questRemoved', (data) => {
-            console.log('Remove Received!');
-            this.$store.dispatch('questRemoved', data);
+        window.api.receive('questRemoved', (usbDevice) => {
+            this.$store.dispatch('questRemoved', usbDevice);
         });
     },
     data() {
