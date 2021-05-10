@@ -3,7 +3,7 @@
 const path = require('path');
 const usbDetect = require('usb-detection');
 import { AdbBridge } from './modules/AdbBridge'
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, clipboard } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -152,4 +152,11 @@ ipcMain.on('getDeviceProperties', async (e) => {
   */
 
   e.reply('getDeviceProperties_REPLY', getProps);
+});
+
+/* General System IPC
+---------------------------------------------------------------------------------------------------- */
+
+ipcMain.on('writeToClipboard', (e, text) => {
+  clipboard.writeText(text);
 });

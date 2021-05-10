@@ -9,7 +9,8 @@ contextBridge.exposeInMainWorld(
                 "minimise-window",
                 "maximise-window",
                 "exit-app",
-                "getDeviceProperties"
+                "getDeviceProperties",
+                "writeToClipboard",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);

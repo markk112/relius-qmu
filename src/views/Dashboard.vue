@@ -16,7 +16,7 @@
                 </svg>
                 <div class="mini-info">
                     <h2>{{ questCustomName }}</h2>
-                    <p>{{ questSerial }}</p>
+                    <p @click="writeToClipboard(questSerial)">{{ questSerial }}</p>
                 </div>
                 <div class="controls">
                     <div class="buttons">
@@ -85,7 +85,12 @@ export default {
     methods: {
         getDeviceProperties() {
             window.api.send('getDeviceProperties');
-        }
+        },
+        writeToClipboard(text) {
+            if (!(text === 'XXXXXXXXXXXXXX')) {
+                window.api.send('writeToClipboard', text);
+            }
+        } 
     },
     computed: {
         questCustomName() {
