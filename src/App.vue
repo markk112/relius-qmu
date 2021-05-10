@@ -39,6 +39,7 @@ export default {
         });
         window.api.receive('questRemoved', (usbDevice) => {
             this.$store.dispatch('questRemoved', usbDevice);
+            this.$store.dispatch('setQuestSerial', 'XXXXXXXXXXXXXX');
         });
     },
     data() {

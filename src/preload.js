@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld(
                 "minimise-window",
                 "maximise-window",
                 "exit-app",
+                "getDeviceProperties"
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
@@ -19,6 +20,7 @@ contextBridge.exposeInMainWorld(
             let validChannels = [
                 "questAttached",
                 "questRemoved",
+                "getDeviceProperties_REPLY",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));

@@ -20,7 +20,7 @@
                 </div>
                 <div class="controls">
                     <div class="buttons">
-                        <button class="btn-default">Shutdown</button>
+                        <button class="btn-default" @click="getDeviceProperties">Shutdown</button>
                         <button class="btn-default">Restart</button>
                     </div>
                 </div>
@@ -77,6 +77,16 @@
 <script>
 export default {
     name: 'Dashboard',
+    mounted() {
+        window.api.receive('getDeviceProperties_REPLY', (props) => {
+            console.log(props);
+        });
+    },
+    methods: {
+        getDeviceProperties() {
+            window.api.send('getDeviceProperties');
+        }
+    },
     computed: {
         questCustomName() {
             return this.$store.state.questCustomName;

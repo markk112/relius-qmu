@@ -122,3 +122,34 @@ usbDetect.on('remove', async (device) => {
     win.webContents.send('questRemoved', device);
   }
 });
+
+/* AdbBridge IPC
+---------------------------------------------------------------------------------------------------- */
+
+ipcMain.on('getDeviceProperties', async (e) => {
+  const getProps = await AdbBridge.execute('adb shell getprop');
+
+  /*
+  usage
+  adb shell getprop ro.build.version.sdk
+
+  ro.product.device
+  "hollywood"
+  ro.product.model
+  "Quest 2"
+  ro.product.manufacturer
+  "Oculus"
+  ro.serialno
+  "1JJEH222DJS2222"
+  ro.build.id
+  "QP1A.2323232.020"
+  ro.build.fingerprint
+  "oculus/hollywood/hollywood:10/QP1A..."
+  ro.build.description
+  "hollywood-suer 10 QPA1.23232.020 12312331232132 release-keys"
+  
+
+  */
+
+  e.reply('getDeviceProperties_REPLY', getProps);
+});
