@@ -33,13 +33,13 @@ export default {
         Frame,
     },
     mounted() {
-        window.api.receive('usbAttached', (data) => {
+        window.api.receive('questAttached', (data) => {
             console.log('Attach Received!');
-            this.$store.dispatch('usbAttached', data);
+            this.$store.dispatch('questAttached', data);
         });
-        window.api.receive('usbRemoved', (data) => {
+        window.api.receive('questRemoved', (data) => {
             console.log('Remove Received!');
-            this.$store.dispatch('usbRemoved', data);
+            this.$store.dispatch('questRemoved', data);
         });
     },
     data() {

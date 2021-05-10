@@ -27,7 +27,6 @@
             </div>
             <div class="details inner">
                 <h2>General</h2>
-                <h4 style="color: red; font-size: 49px;">{{ getStatus }}</h4>
                 <div class="info">
                     <ul>
                         <li>
@@ -78,14 +77,7 @@
 <script>
 export default {
     name: 'Dashboard',
-    computed: {
-        getStatus() {
-            return this.$store.state.status;
-        }
-    }
 };
-
-
 </script>
 
 <style scoped>

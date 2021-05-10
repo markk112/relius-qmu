@@ -17,8 +17,8 @@ contextBridge.exposeInMainWorld(
         receive: (channel, func) => {
             // Whitelisted channels which can recieve from main process
             let validChannels = [
-                "usbAttached",
-                "usbRemoved",
+                "questAttached",
+                "questRemoved",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));

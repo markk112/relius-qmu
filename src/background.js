@@ -112,13 +112,13 @@ usbDetect.on('add', async (device) => {
   await AdbBridge.sleep(1000);
   const deviceIsQuest = await AdbBridge.isAQuest();
   if (deviceIsQuest) {
-    win.webContents.send('usbAttached', device);
+    win.webContents.send('questAttached', device);
   }
 });
 
 usbDetect.on('remove', async (device) => {
   const deviceIsQuest = await AdbBridge.isAQuest();
   if (!deviceIsQuest) {
-    win.webContents.send('usbRemoved', device);
+    win.webContents.send('questRemoved', device);
   }
 });
