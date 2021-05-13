@@ -20,7 +20,7 @@
                 </div>
                 <div class="controls">
                     <div class="buttons">
-                        <button class="btn-default" @click="updateQuestProps">Shutdown</button>
+                        <button class="btn-default">Shutdown</button>
                         <button class="btn-default">Restart</button>
                     </div>
                 </div>
@@ -31,19 +31,19 @@
                     <ul>
                         <li>
                             <h3>Device Name</h3>
-                            <p>{{ questCustomName }}</p>
+                            <p :class="{ old: !questStatus }">{{ questCustomName }}</p>
                         </li>
                         <li>
                             <h3>Model</h3>
-                            <p>{{ questModel }}</p>
+                            <p :class="{ model: 1, old: !questStatus }">{{ questModel }}</p>
                         </li>
                         <li>
                             <h3>Firmware Version</h3>
-                            <p>v{{ questFirmwareVersion }}</p>
+                            <p :class="{ old: !questStatus }">{{ questFirmwareVersion }}</p>
                         </li>
                         <li>
                             <h3>Serial</h3>
-                            <p>{{ questSerial }}</p>
+                            <p :class="{ old: !questStatus }">{{ questSerial }}</p>
                         </li>
                     </ul>
                 </div>
@@ -83,9 +83,6 @@ export default {
         });
     },
     methods: {
-        updateQuestProps() {
-            window.api.send('GET_QUEST_PROPS');
-        },
         writeToClipboard(text) {
             if (!(text === 'XXXXXXXXXXXXXX')) {
                 window.api.send('writeToClipboard', text);
@@ -104,6 +101,9 @@ export default {
         },
         questModel() {
             return this.$store.state.questModel;
+        },
+        questStatus() {
+            return this.$store.state.status;
         }
     }
 };
@@ -151,6 +151,10 @@ export default {
     align-items: flex-end;
 }
 
+
+#dashboard .content .details .info .old {
+    color: #ef1c26;
+}
 #dashboard .content .details h2 {
     font-size: 18px;
     margin-bottom: 20px;
@@ -161,6 +165,9 @@ export default {
 }
 #dashboard .content .details p {
     font-size: 14px;
+}
+#dashboard .content .details p.model {
+    text-transform: capitalize;
 }
 #dashboard .content .details li {
     padding-bottom: 4px;
