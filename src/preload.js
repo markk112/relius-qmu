@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld(
                 "minimise-window",
                 "maximise-window",
                 "exit-app",
-                "getDeviceProperties",
+                "GET_QUEST_PROPS",
                 "writeToClipboard",
             ];
             if (validChannels.includes(channel)) {
@@ -21,7 +21,7 @@ contextBridge.exposeInMainWorld(
             let validChannels = [
                 "questAttached",
                 "questRemoved",
-                "getDeviceProperties_REPLY",
+                "GET_QUEST_PROPS__REPLY",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));

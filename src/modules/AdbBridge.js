@@ -1,15 +1,18 @@
 
 const util = require('util');
-const { spawn } = require('child_process');
 const promExec = util.promisify(require('child_process').exec);
 
 export const AdbBridge = {
 
-    async execute(strcmd) {
-        const { stdout, stderr } = await promExec(strcmd, {
+    async execute(shellCmd) {
+        const { stdout, stderr } = await promExec(shellCmd, {
             cwd: process.cwd() + '\\deps\\platform-tools',
         });
-        return stdout;
+        if (stdout) {
+            return stdout;
+        } else {
+            return stderr;
+        }
     },
 
     async isAQuest() {
@@ -22,10 +25,10 @@ export const AdbBridge = {
     },
 
     async _getAdbDevices() {
-        await this.sleep(1000);
-        const cmd = await this.execute('adb devices -l');
-        return cmd;
+        return await this.execute('adb devices -l'); 
     },
+
+    // Utilities
 
     async sleep(ms) {
         return new Promise((resolve) => {

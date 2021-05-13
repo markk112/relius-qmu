@@ -20,7 +20,7 @@
                 </div>
                 <div class="controls">
                     <div class="buttons">
-                        <button class="btn-default" @click="getDeviceProperties">Shutdown</button>
+                        <button class="btn-default" @click="updateQuestProps">Shutdown</button>
                         <button class="btn-default">Restart</button>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         </li>
                         <li>
                             <h3>Model</h3>
-                            <p>Oculus Quest 2 "hollywood"</p>
+                            <p>{{ questModel }}</p>
                         </li>
                         <li>
                             <h3>Firmware Version</h3>
@@ -78,13 +78,13 @@
 export default {
     name: 'Dashboard',
     mounted() {
-        window.api.receive('getDeviceProperties_REPLY', (props) => {
-            console.log(props);
+        window.api.receive('GET_QUEST_PROPS__REPLY', (propsObj) => {
+            this.$store.dispatch('updateDeviceProps', propsObj);
         });
     },
     methods: {
-        getDeviceProperties() {
-            window.api.send('getDeviceProperties');
+        updateQuestProps() {
+            window.api.send('GET_QUEST_PROPS');
         },
         writeToClipboard(text) {
             if (!(text === 'XXXXXXXXXXXXXX')) {

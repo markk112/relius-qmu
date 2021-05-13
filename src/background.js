@@ -1,12 +1,11 @@
 'use strict'
 
+require('./modules/IpcController.js');
+
 const path = require('path');
-const IpcController = require('./modules/IpcController.js');
 const usbDetect = require('usb-detection');
-import { AdbBridge } from './modules/AdbBridge'
-import { app, protocol, BrowserWindow, ipcMain, clipboard } from 'electron'
+import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -85,53 +84,3 @@ if (isDevelopment) {
   }
 }
 
-/* Frame IPC Control
----------------------------------------------------------------------------------------------------- */
-
-ipcMain.on('minimise-window', () => {
-  win.minimize();
-});
-
-ipcMain.on('maximise-window', () => {
-  if (BrowserWindow.getFocusedWindow().isMaximized()) {
-    win.unmaximize();
-  }
-  else {
-    win.maximize();
-  }
-});
-
-ipcMain.on('exit-app', () => {
-  // Forces closing of the focused window. unload and beforeunload events will not be emitted.
-  win.destroy();
-});
-
-/* USB IPC Control
----------------------------------------------------------------------------------------------------- */
-
-usbDetect.on('add', async (device) => {
-  await AdbBridge.sleep(1000);
-  const deviceIsQuest = await AdbBridge.isAQuest();
-  if (deviceIsQuest) {
-    win.webContents.send('questAttached', device);
-  }
-});
-
-usbDetect.on('remove', async (device) => {
-  const deviceIsQuest = await AdbBridge.isAQuest();
-  if (!deviceIsQuest) {
-    win.webContents.send('questRemoved', device);
-  }
-});
-
-/* AdbBridge IPC
----------------------------------------------------------------------------------------------------- */
-
-
-
-/* General System IPC
----------------------------------------------------------------------------------------------------- */
-
-ipcMain.on('writeToClipboard', (e, text) => {
-  clipboard.writeText(text);
-});
