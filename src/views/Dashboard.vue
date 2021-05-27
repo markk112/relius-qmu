@@ -117,6 +117,7 @@ export default {
 #dashboard .content .banner button {
     background-color: #242424;
     margin-left: 20px;
+    transition: all .25s;
 }
 #dashboard .content .banner button:hover {
     transform: scale(0.95);
@@ -140,6 +141,7 @@ export default {
     cursor: pointer;
     background-color: #0e0e0e;
     color: #fff;
+    border-radius: 3px;
 }
 #dashboard .content .banner .controls {
     display: flex;
