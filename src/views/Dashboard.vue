@@ -15,8 +15,10 @@
                     />
                 </svg>
                 <div class="mini-info">
-                    <h2>{{ questCustomName }}</h2>
-                    <p @click="writeToClipboard(questSerial)">{{ questSerial }}</p>
+                    <form @submit="finishEdit">
+                        <input type="text" :value="questCustomName" @input="updateQuestCustomName" @keyup.enter="finishEdit">
+                    </form>
+                    <p :class="{ old: !questStatus }" @click="writeToClipboard(questSerial)">{{ questSerial }}</p>
                 </div>
                 <div class="controls">
                     <div class="buttons">
@@ -84,10 +86,18 @@ export default {
     },
     methods: {
         writeToClipboard(text) {
-            if (!(text === 'XXXXXXXXXXXXXX')) {
+            if (!(text === '1WMH0000000000')) {
                 window.api.send('writeToClipboard', text);
             }
-        } 
+        },
+        updateQuestCustomName(event) {
+            this.$store.commit('updateQuestCustomName', event.target.value);
+        },
+        finishEdit(event) {
+            event.preventDefault();
+            event.target.blur();
+        }
+
     },
     computed: {
         questCustomName() {
@@ -128,8 +138,24 @@ export default {
     margin-left: 20px;
     justify-content: center;
 }
+#dashboard .content .banner .mini-info form input {
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    outline: none;
+    color: #949494;
+    padding: 0;
+}
+#dashboard .content .banner .mini-info form input:focus {
+    outline: none;
+    border:0;
+    color: #949494;
+    border-bottom: solid 1px #1c1c1c;
+}
 #dashboard .content .banner .mini-info h2 {
     font-size: 16px;
+}
+#dashboard .content .banner .mini-info .old {
+    color: #ef1c26;
 }
 #dashboard .content .banner .mini-info p {
     padding: 4px 6px;

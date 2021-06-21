@@ -1,13 +1,16 @@
 import { createStore } from 'vuex'
 
 export default createStore({
-  state: {
+
+  state:
+  {
     status: 0,
-    questSerial: 'XXXXXXXXXXXXXX',
+    questSerial: '1WMH0000000000',
     questCustomName: 'John\'s Quest',
     questFirmwareVersion: '?',
     questModel: 'unknown'
   },
+
   mutations: {
 
     setStatus(state, status) {
@@ -23,9 +26,13 @@ export default createStore({
       }
       const formattedModelStr = questObj.manufacturer + ' ' + qModel;
       state.questModel = formattedModelStr;
+    },
+    updateQuestCustomName(state, name) {
+      state.questCustomName = name;
     }
 
   },
+  
   actions: {
 
     questAttached(context, device) {
