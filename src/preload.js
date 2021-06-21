@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld(
                 "exit-app",
                 "GET_QUEST_PROPS",
                 "writeToClipboard",
+                "GET_QUEST_STORAGE_DATA",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
@@ -22,6 +23,7 @@ contextBridge.exposeInMainWorld(
                 "questAttached",
                 "questRemoved",
                 "GET_QUEST_PROPS__REPLY",
+                "GET_QUEST_STORAGE_DATA__REPLY"
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));

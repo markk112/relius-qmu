@@ -52,8 +52,9 @@
                 <hr />
                 <h2>Storage</h2>
                 <div class="indicator-bg">
-                    <div class="indicator-fill"></div>
-                    <div class="indicator-fill-1"></div>
+                    <div class="indicator-fill" :style="{ width: systemSize + '%' }"></div>
+                    <div class="indicator-fill-1" :style="{ width: dataSize + '%' }"></div>
+                    <div class="indicator-fill" :style="{ width: freeSize + '%' }"></div>
                 </div>
                 <div class="legend">
                     <div class="item">
@@ -82,6 +83,9 @@ export default {
     mounted() {
         window.api.receive('GET_QUEST_PROPS__REPLY', (propsObj) => {
             this.$store.dispatch('updateDeviceProps', propsObj);
+        });
+        window.api.receive('GET_QUEST_STORAGE_DATA__REPLY', (dataStorageObj) => {
+            this.$store.dispatch('updateStorageDataSize', dataStorageObj);
         });
     },
     methods: {
@@ -114,7 +118,28 @@ export default {
         },
         questStatus() {
             return this.$store.state.status;
+        },
+        questStorageSizeData() {
+            return this.$store.state.questStorageSizeData;
+        },
+        systemSize() {
+            const sys = this.$store.state.questStorageSizeData.system;
+            const decimal = (sys / (sys + this.$store.state.questStorageSizeData.dataMax)).toFixed(2);
+            return decimal * 100;
+        },
+        dataSize() {
+            const sys = this.$store.state.questStorageSizeData.system;
+            const data = this.$store.state.questStorageSizeData.dataCurrent;
+            const decimal = (data / (sys + this.$store.state.questStorageSizeData.dataMax)).toFixed(2);
+            return decimal * 100;
+        },
+        freeSize() {
+            const sys = this.$store.state.questStorageSizeData.system;
+            const dataLeft = this.$store.state.questStorageSizeData.dataMax - this.$store.state.questStorageSizeData.dataCurrent;
+            const decimal = (dataLeft / (sys + this.$store.state.questStorageSizeData.dataMax)).toFixed(2);
+            return decimal * 100;
         }
+
     }
 };
 </script>
@@ -130,13 +155,20 @@ export default {
     transition: all .25s;
 }
 #dashboard .content .banner button:hover {
-    transform: scale(0.95);
+    /* transform: scale(0.95); */
+    background-color: #0e64ef;
+    color: #fff;
 }
 #dashboard .content .banner .mini-info {
     display: flex;
     flex-flow: column;
     margin-left: 20px;
     justify-content: center;
+    align-items: flex-start;
+}
+#dashboard .content .banner .mini-info form {
+    width: 100%;
+    line-height: 1.2;
 }
 #dashboard .content .banner .mini-info form input {
     background-color: rgba(0,0,0,0);
@@ -144,12 +176,14 @@ export default {
     outline: none;
     color: #949494;
     padding: 0;
+    width: 150px;
 }
 #dashboard .content .banner .mini-info form input:focus {
     outline: none;
     border:0;
     color: #949494;
     border-bottom: solid 1px #1c1c1c;
+    width: 300px;
 }
 #dashboard .content .banner .mini-info h2 {
     font-size: 16px;
@@ -220,13 +254,11 @@ export default {
     background-color: #0e64ef;
     height: inherit;
     border-radius: 5px 0 0 5px;
-    width: 75%;
 }
 #dashboard .indicator-fill-1 {
     display: inline-block;
     background-color: #0d449c;
     height: inherit;
-    width: 14%;
 }
 #dashboard .legend {
     margin-top: 15px;

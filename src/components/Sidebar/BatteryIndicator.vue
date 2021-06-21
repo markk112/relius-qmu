@@ -11,7 +11,7 @@
                         fill="#949494"
                     />
                 </svg>
-                <div class="progress">
+                <div class="left progress">
                     <div class="bar"></div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         fill="#949494"
                     />
                 </svg>
-                <div class="progress centre">
+                <div class="unit progress centre">
                     <div class="bar"></div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         fill="#949494"
                     />
                 </svg>
-                <div class="progress">
+                <div class="right progress">
                     <div class="bar"></div>
                 </div>
             </div>

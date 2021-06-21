@@ -36,6 +36,7 @@ export default {
         window.api.receive('questAttached', (usbDevice) => {
             this.$store.dispatch('questAttached', usbDevice);
             window.api.send('GET_QUEST_PROPS');
+            window.api.send('GET_QUEST_STORAGE_DATA');
         });
         window.api.receive('questRemoved', (usbDevice) => {
             this.$store.dispatch('questRemoved', usbDevice);

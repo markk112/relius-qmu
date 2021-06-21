@@ -64,3 +64,33 @@ ipcMain.on('GET_QUEST_PROPS', async (e) => {
 
     e.reply('GET_QUEST_PROPS__REPLY', propsObj);
 });
+
+ipcMain.on('GET_QUEST_STORAGE_DATA', async (e) => {
+
+    /*
+        Use either "adb shell df" or "adb shell dumpsys diskstats" (more accurate and advanced)
+        For now fetch basic storage information, can be improved on later.
+    */
+
+    let storageDataDump = await AdbBridge.execute('adb shell df');
+    storageDataDump = storageDataDump.replace(/\s+/gm, ';').split(';');
+    
+    let systemSizeInKBlocks = [];
+    let totalSysSizeInGB = 0;
+
+    systemSizeInKBlocks.push(storageDataDump[8], storageDataDump[14], storageDataDump[20], storageDataDump[26], storageDataDump[32]);
+
+    systemSizeInKBlocks.forEach( kBSize => {
+        totalSysSizeInGB += kBSize / (1024*1024)
+    });
+
+    const storageDataObj = {
+        system: parseFloat(totalSysSizeInGB.toFixed(2)),
+        dataMax: parseFloat((storageDataDump[38] / (1024*1024)).toFixed(2)),
+        dataCurrent: parseFloat((storageDataDump[39] / (1024*1024)).toFixed(2)),
+        dataLeft: parseFloat((parseFloat((storageDataDump[38] / (1024*1024)).toFixed(2)) - parseFloat((storageDataDump[39] / (1024*1024)).toFixed(2))).toFixed(2))
+    }
+
+    e.reply('GET_QUEST_STORAGE_DATA__REPLY', storageDataObj);
+
+});

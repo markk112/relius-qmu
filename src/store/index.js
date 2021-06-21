@@ -8,7 +8,8 @@ export default createStore({
     questSerial: '1WMH0000000000',
     questCustomName: 'John\'s Quest',
     questFirmwareVersion: '?',
-    questModel: 'unknown'
+    questModel: 'unknown',
+    questStorageSizeData: {},
   },
 
   mutations: {
@@ -27,8 +28,13 @@ export default createStore({
       const formattedModelStr = questObj.manufacturer + ' ' + qModel;
       state.questModel = formattedModelStr;
     },
+
     updateQuestCustomName(state, name) {
       state.questCustomName = name;
+    },
+
+    updateStorageDataSize(state, storageDataObj) {
+      state.questStorageSizeData = storageDataObj;
     }
 
   },
@@ -49,6 +55,10 @@ export default createStore({
 
     updateDeviceProps({ commit }, propsObj) {
       commit('updateDeviceProps', propsObj);
+    },
+
+    updateStorageDataSize({ commit }, storageDataObj) {
+      commit('updateStorageDataSize', storageDataObj);
     }
 
   },
