@@ -52,23 +52,30 @@
                 <hr />
                 <h2>Storage</h2>
                 <div class="indicator-bg">
-                    <div class="indicator-fill" :style="{ width: systemSize + '%' }"></div>
-                    <div class="indicator-fill-1" :style="{ width: dataSize + '%' }"></div>
-                    <div class="indicator-fill" :style="{ width: freeSize + '%' }"></div>
+                    <div class="indicator-fill system" :style="{ width: systemSize + '%' }"></div>
+                    <div class="indicator-fill data" :style="{ width: dataSize + '%' }"></div>
+                    <div class="indicator-fill space" :style="{ width: freeSize + '%' }"></div>
                 </div>
                 <div class="legend">
                     <div class="item">
-                        <div class="colour"></div>
+                        <div class="colour system"></div>
                         <div class="name">
-                            <h3>Unknown Sources</h3>
-                            <p>34.5 <span class="strong">GB</span></p>
+                            <h3>System</h3>
+                            <p>{{ questStorageSizeData.system }} <span class="strong">GB</span></p>
                         </div>
                     </div>
                     <div class="item">
-                        <div class="colour"></div>
+                        <div class="colour data"></div>
                         <div class="name">
-                            <h3>System</h3>
-                            <p>34.5 <span class="strong">GB</span></p>
+                            <h3>Data</h3>
+                            <p>{{ questStorageSizeData.dataCurrent }} <span class="strong">GB</span></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="colour space"></div>
+                        <div class="name">
+                            <h3>Space Left</h3>
+                            <p>{{ (questStorageSizeData.dataMax - questStorageSizeData.dataCurrent).toFixed(2) }} <span class="strong">GB</span></p>
                         </div>
                     </div>
                 </div>
@@ -251,15 +258,21 @@ export default {
 }
 #dashboard .indicator-fill {
     display: inline-block;
-    background-color: #0e64ef;
+    background-color: #242424;
     height: inherit;
+    transition: width 10s ease-in-out;
+}
+#dashboard .indicator-fill.system {
     border-radius: 5px 0 0 5px;
+    background-color: #073278;
 }
-#dashboard .indicator-fill-1 {
-    display: inline-block;
-    background-color: #0d449c;
-    height: inherit;
+#dashboard .indicator-fill.data {
+    background-color: #0a46a7;
 }
+#dashboard .indicator-fill.space {
+    border-radius: 0 5px 5px 0;
+}
+
 #dashboard .legend {
     margin-top: 15px;
 }
@@ -271,11 +284,20 @@ export default {
     display: inline-block;
 }
 #dashboard .legend .item .colour {
-    background-color: #0e64ef;
     border-radius: 5px;
     display: inline-block;
     width: 30px;
     height: 30px;
     margin-right: 20px;
 }
+#dashboard .legend .item .colour.system {
+    background-color: #073278;
+}
+#dashboard .legend .item .colour.data {
+    background-color: #0a46a7;
+}
+#dashboard .legend .item .colour.space {
+    background-color: #242424;
+}
+
 </style>
